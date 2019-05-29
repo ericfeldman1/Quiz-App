@@ -1,0 +1,6 @@
+body {
+    background: url("https://static01.nyt.com/images/2012/10/18/garden/18KITCHEN_SPAN/18KITCHEN-superJumbo.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    text-align: center;
+}
