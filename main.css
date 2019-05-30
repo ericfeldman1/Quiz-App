@@ -1,12 +1,31 @@
 body {
-    background: url("https://static01.nyt.com/images/2012/10/18/garden/18KITCHEN_SPAN/18KITCHEN-superJumbo.jpg");
+    /* background: url("https://static01.nyt.com/images/2012/10/18/garden/18KITCHEN_SPAN/18KITCHEN-superJumbo.jpg");
     background-size: cover;
-    background-attachment: fixed;
+    background-attachment: fixed; */
     text-align: center;
 }
 
+nav {
+    display: flex;
+    justify-content: space-around;
+}
+
+header {
+    padding: 70px 0;
+}
+
+button {
+    margin: 20px 0;
+    padding: 7px;
+}
+
 input[type="radio"] {
-    margin-bottom: 9px; 
+    margin-bottom: 15px; 
+    margin-left: 10px;
+}
+
+label {
+    margin-left: 7px;
 }
 
 .question {
@@ -15,27 +34,28 @@ input[type="radio"] {
   border: 2px solid black;
   background-color: white;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 100px;
   text-align: left;
 }
 
 .submitAnswerButton {
-    text-align: center;
+    margin-left: 140px;
+    margin-bottom: 30px;
 }
 
 .answerDisplay {
     display: border-box;
     margin: auto;
-    margin-top: 30px;
+    margin-top: 100px;
     border: 5px solid black;
     width: 400px;
+    height: 300px;
     background-color: white;
     padding-bottom: 10px;
     padding-top: 20px;
-    
 }
 
-.correctAnswerImage {
+/* .correctAnswerImage {
     width: 300px;
     height: 200px;
 }
@@ -43,15 +63,17 @@ input[type="radio"] {
 
 .incorrectAnswerImage {
     width: 200px;
-    height: 200px;
+    height: 200px; */
 }
 
-.startEndOfQuiz {
-    display: border-box;
+.endOfQuiz {
+    /* display: border-box;
     margin: auto;
     margin-top: 30px;
     border: 5px solid black;
     width: 400px;
     background-color: white;
-    padding-bottom: 10px;
+    padding-bottom: 10px; */
+    color: red;
 }
+
