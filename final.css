@@ -1,0 +1,27 @@
+body {
+    background: url("https://static01.nyt.com/images/2012/10/18/garden/18KITCHEN_SPAN/18KITCHEN-superJumbo.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    font-size: 30px;
+}
+
+.landingPage {
+    width: 350px;
+    height: 250px;
+    margin: auto;
+    padding: 30px;
+    background-color: rgba(9, 226, 132, .5)
+}
+
+button {
+    padding: 10px;
+    font-size: 20px;
+}
