@@ -4,11 +4,10 @@ const questionNumber = 0
 // score begins at 0
 const score = 0
 
-// generate question - html code
+// html for question page
 function generateQuestion() {
-    if questionCount < STORE.length) {
-        return 
-        <div class="question-${questionNumber}">
+    if (questionCount < STORE.length) {
+        return `<div class="question-${questionNumber}">
         <h2>${STORE[questionNumber].question}</h2>
         <form class="questionForm" action="URL" method="post">
         <fieldset name ="multiple-choice-options">
@@ -38,46 +37,106 @@ function generateQuestion() {
         </label>
         <button type="Submit">Submit</button>
         </fieldset>
-        </form>
+        </form>`
     }
     else {
-    //    Still need to create these functions
        renderResults();
-        restartQuiz()
-        $(.questionNumber).text(10)
+        restartQuiz();
+        $(".questionNumber").text(10);
     }
 }
 
-{/* increment question number */}
+// increment question number
 function updateQuestionNumber() {
     questionNumber++;
-    $(.questionNumber).text(questionNumber+1)
+    $(".questionNumber").text(questionNumber+1)
 }
-{/* increment score */}
+
+// increment Score
 function updateScore() {
     score++;
-    $(.scoreCount).text(score)
+    $(".score").text(score)
 }
-start quiz
+
+// start quiz - hide landing page HTML and show question page HTML
+function startQuiz() {
+    $(".landingPage").on("click", ".startButton", function(event) {
+        $(".landingPage").remove;
+    $(".questionNumber").text(1);    
+    })
+}
 
 // render question in DOM
+function renderQuestion() {
+    $(".questionAnswerForm").html(generateQuestion());
+}
 
-// user selects answer
+// user selects answer 
+function userSelectAnswer() {
+    $(".form").on("submit", function (event) {
+        event.preventDefault();
+        let selected = $("input:checked");
+        let answer = selected.val();
+        let correctAnswer = `${STORE[questionNumber].correctAnswer}`
+        if (answer === correctAnswer) {
+            selected.parent().addClass("correct");
+            ifAnswerIsCorrect();
+        }   else {
+                selected.parent().addClass("wrong");
+                ifAnswerIsWrong;
+            }
+        
+    })
+}
 
-// user feedback for correct answer
+function ifAnswerIsCorrect() {
+    userAnswerFeedbackCorrect();
+    updateScore();
+}
 
-// user feedback for incorrect answer
+function ifAnswerisWrong() {
+    userAnswerFeedbackWrong()
+}
+
+// html for correct answer
+function userAnswerFeedbackCorrect() {
+
+}
+
+// html for wrong answer
+function userAnswerFeedbackWrong() {
+
+}
 
 // update score text
+function updateScore() {
+
+}
 
 // html for when the quiz is over
+function renderResults() {
+
+}
 
 // what happens when the user clicks next
+function renderNextQuestion() {
+
+}
 
 // reload page to re-take quiz
+function restartQuiz() {
+
+}
 
 // run quiz functions
+function createQuiz() {
+    startQuiz();
+    renderQuestion();
+    userSelectAnswer();
+    renderNextQuestion();
+}
 
+$(createQuiz);
 
 
 
