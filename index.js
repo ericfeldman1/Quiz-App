@@ -1,12 +1,24 @@
-// questions begin at 0
+// questions begin at 0 (relevant for datastore array & navbar)
 const questionNumber = 0
 
-// score begins at 0
+// score begins at 0 (relevant for navbar & summary page)
 const score = 0
 
-// html for question page
+// 1. START QUIZ - Hide landing page & Show question page
+function startQuiz() {
+    $(".landingPage").on("click", ".startButton", function(event) {
+    // Removes landing page:
+    $(".landingPage").remove();
+    // Displays questions page:
+    $(".quizPage").css("display", "block")
+    // Increments question count in navbar to 1:
+    $(".questionNumber").text(1);    
+    });
+}
+
+// 2. HTML - QUESTION PAGE
 function generateQuestion() {
-    if (questionCount < STORE.length) {
+    if (questionNumber < STORE.length) {
         return `<div class="question-${questionNumber}">
         <h2>${STORE[questionNumber].question}</h2>
         <form class="questionForm" action="URL" method="post">
@@ -40,87 +52,93 @@ function generateQuestion() {
         </form>`
     }
     else {
-       renderResults();
+        // Show summary page:
+        renderResults();
+        // Apply logic to button to be able to re-start quiz:
         restartQuiz();
+        // Set question counter in navbar to 10:
         $(".questionNumber").text(10);
     }
 }
 
-// increment question number
+// 3. INCREMENT QUESTION NUMBER
 function updateQuestionNumber() {
+    // Incrementing it for the datastore array:
     questionNumber++;
+    // Incrementing it for the navbar:
     $(".questionNumber").text(questionNumber+1)
 }
 
-// increment Score
+// 4. INCREMENT SCORE
 function updateScore() {
+    // Incrementing the value assigned to the "score" variable:
     score++;
+    // Plugging in the new value into the navbar:
     $(".score").text(score)
 }
 
-// start quiz - hide landing page HTML and show question page HTML
-function startQuiz() {
-    $(".landingPage").on("click", ".startButton", function(event) {
-    $(".landingPage").remove();
-    $(".quizPage").css("display", "block")
-    $(".questionNumber").text(1);    
-    })
-}
-
-// render question in DOM
+// 5. RENDER QUESTION IN DOM
 function renderQuestion() {
     $(".quizPage").html(generateQuestion());
 }
 
-// user selects answer 
+// 6. USER SELECTS ANSWER
 function userSelectAnswer() {
     $(".form").on("submit", function (event) {
+        // Standard/generally a good thing to put in: 
         event.preventDefault();
+        // Defining variables:
         let selected = $("input:checked");
         let answer = selected.val();
-        let correctAnswer = `${STORE[questionNumber].correctAnswer}`
+        let correctAnswer = `${STORE[questionNumber].correctAnswer}`;
         if (answer === correctAnswer) {
-            selected.parent().addClass("correct");
-            ifAnswerIsCorrect();
+            // Nec to create a "correct" CSS class!
+            // selected.parent().addClass("correct");
+            userAnswerIsCorrect();
+            updateScore();
         }   else {
-                selected.parent().addClass("wrong");
-                ifAnswerIsWrong;
+                // Nec to create a "wrong" CSS class!
+                // selected.parent().addClass("wrong");
+                userAnswerWrong();
             }
         
-    })
+    });
 }
 
-function ifAnswerIsCorrect() {
-    userAnswerCorrect();
-    updateScore();
+// 7. "NEXT" BUTTON
+function renderNextQuestion() {
+    $(".quizPage").on("click",".nextQuestionButton", function(event) {
+        // Increments Q for datastore array and for navbar: 
+        updateQuestionNumber();
+        // Passes new question into html:
+         renderQuestion();
+        //  Embeds logic into "submit" button:
+         userSelectAnswer();
+    });
 }
 
-function ifAnswerisWrong() {
-    userAnswerWrong()
-}
-
-// html for correct answer
+// 8. HTML - CORRECT ANSWER
 function userAnswerCorrect() {
-    $(.quizPage).html(`<div class=" answerDisplay correctAnswerDisplay">
+    $(".quizPage").html(`<div class= "js-box correctAnswerDisplay">
     <img src="https://images.forwardcdn.com/image/720x/center/images/cropped/w-kosher-1501703457.jpg
     " alt="Correct Answer" class="correctAnswerImage">
     <p>That is the correct answer!  Great Job!</p>  
-    <button type="button" class="nextQuestionButton"><Next Question</button></div>`)
+    <button type="button" class="nextQuestionButton">Next Question</button></div>`)
 }
 
-// html for wrong answer
+// 9. HTML - WRONG ANSWER
 function userAnswerWrong() {
-    $(.quizPage).html(`<div class="answerDisplay wrongAnswerDisplay">
+    $(".quizPage").html(`<div class="js-box wrongAnswerDisplay">
     <img src="http://www.theyeshivaworld.com/wp-content/uploads/2015/11/nk.png
     " alt="Incorrect Answer" class="incorrectAnswerImage answerImage">
     <p>Sorry, that answer is incorrect.  Nice try!</p>
-    <button type="button" class="nextQuestionButton"><Next Question</button></div>`)
+    <button type="button" class="nextQuestionButton">Next Question</button></div>`)
 }
 
-// html for when the quiz is over
+// 10. HTML - SUMMARY PAGE
 function renderResults() {
 if (score >= 8) {
-    $(".quizPage").html(`<div class="resultsPage">
+    $(".quizPage").html(`<div class="js-box resultsPage">
     <h3>You answered ${score} out of 10 questions correctly.</h3>
     <p>Great job - Time to get cooking because you've got this down!</p>
     <button type="button" class="retakeQuizButton"><Retake Quiz</button></div>`)
@@ -131,31 +149,27 @@ if (score >= 8) {
 }   else {$(".quizPage").html(`<div class="resultsPage">
 <h3>You answered ${score} out of 10 questions correctly.</h3>
 <p>Uh oh - I think we might need to kick you out of the kitchen until you study up a bit more.</p>
-<button type="button" class="retakeQuizButton"><Retake Quiz</button></div>`)
+<button type="button" class="retakeQuizButton">Retake Quiz</button></div>`)
 }
 }
 
-// what happens when the user clicks next
-function renderNextQuestion() {
-    $(".quizPage").on("click",".retakeQuizButton", function(event) {
-         updateQuestionNumber();
-         renderQuestion();
-         userSelectAnswer();
-    });
-}
-
-// reload page to re-take quiz
+// 11. RE-TAKE QUIZ
 function restartQuiz() {
     $(".resultsPage").on("click", ".retakeQuizButton", function(event) {
+        // Refreshes the page, i.e. re-starts the app:
         location.reload();
     });
 }
 
-// run quiz functions
+// 12. RUN QUIZ FUNCTIONS
 function createQuiz() {
+    // Puts logic into start button to move on to first question:
     startQuiz();
+    // Logic to pass new questions into html:
     renderQuestion();
+    // Logic for submit button at the end of each question:
     userSelectAnswer();
+    // Logic for "next" button at the end of each question:
     renderNextQuestion();
 }
 
