@@ -61,14 +61,15 @@ function updateScore() {
 // start quiz - hide landing page HTML and show question page HTML
 function startQuiz() {
     $(".landingPage").on("click", ".startButton", function(event) {
-        $(".landingPage").remove;
+    $(".landingPage").remove();
+    $(".quizPage").css("display", "block")
     $(".questionNumber").text(1);    
     })
 }
 
 // render question in DOM
 function renderQuestion() {
-    $(".questionAnswerForm").html(generateQuestion());
+    $(".quizPage").html(generateQuestion());
 }
 
 // user selects answer 
@@ -90,42 +91,64 @@ function userSelectAnswer() {
 }
 
 function ifAnswerIsCorrect() {
-    userAnswerFeedbackCorrect();
+    userAnswerCorrect();
     updateScore();
 }
 
 function ifAnswerisWrong() {
-    userAnswerFeedbackWrong()
+    userAnswerWrong()
 }
 
 // html for correct answer
-function userAnswerFeedbackCorrect() {
-
+function userAnswerCorrect() {
+    $(.quizPage).html(`<div class=" answerDisplay correctAnswerDisplay">
+    <img src="https://images.forwardcdn.com/image/720x/center/images/cropped/w-kosher-1501703457.jpg
+    " alt="Correct Answer" class="correctAnswerImage">
+    <p>That is the correct answer!  Great Job!</p>  
+    <button type="button" class="nextQuestionButton"><Next Question</button></div>`)
 }
 
 // html for wrong answer
-function userAnswerFeedbackWrong() {
-
-}
-
-// update score text
-function updateScore() {
-
+function userAnswerWrong() {
+    $(.quizPage).html(`<div class="answerDisplay wrongAnswerDisplay">
+    <img src="http://www.theyeshivaworld.com/wp-content/uploads/2015/11/nk.png
+    " alt="Incorrect Answer" class="incorrectAnswerImage answerImage">
+    <p>Sorry, that answer is incorrect.  Nice try!</p>
+    <button type="button" class="nextQuestionButton"><Next Question</button></div>`)
 }
 
 // html for when the quiz is over
 function renderResults() {
-
+if (score >= 8) {
+    $(".quizPage").html(`<div class="resultsPage">
+    <h3>You answered ${score} out of 10 questions correctly.</h3>
+    <p>Great job - Time to get cooking because you've got this down!</p>
+    <button type="button" class="retakeQuizButton"><Retake Quiz</button></div>`)
+}   else if (score >= 5) {$(".quizPage").html(`<div class="resultsPage">
+<h3>You answered ${score} out of 10 questions correctly.</h3>
+<p>Not bad, but I think you might need a bit more practice.  Study up and you'll be a pro in no time!</p>
+<button type="button" class="retakeQuizButton"><Retake Quiz</button></div>`)
+}   else {$(".quizPage").html(`<div class="resultsPage">
+<h3>You answered ${score} out of 10 questions correctly.</h3>
+<p>Uh oh - I think we might need to kick you out of the kitchen until you study up a bit more.</p>
+<button type="button" class="retakeQuizButton"><Retake Quiz</button></div>`)
+}
 }
 
 // what happens when the user clicks next
 function renderNextQuestion() {
-
+    $(".quizPage").on("click",".retakeQuizButton", function(event) {
+         updateQuestionNumber();
+         renderQuestion();
+         userSelectAnswer();
+    });
 }
 
 // reload page to re-take quiz
 function restartQuiz() {
-
+    $(".resultsPage").on("click", ".retakeQuizButton", function(event) {
+        location.reload();
+    });
 }
 
 // run quiz functions

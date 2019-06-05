@@ -1,14 +1,14 @@
 const STORE = [
 // Question 1
     {
-    question: 'Which of the following is NOT one of the accepted opinions regarding how long you have to wait between having dairy and having meat?',
+    question: "What does 'pareve' mean?",
     answers: [
-    '1 Hour', 
-    '3 Hours', 
-    '6 Hours', 
-    '9 Hours'
+    'A food that cannot be eaten with meat or dairy', 
+    'A food that is neither meat nor dairy', 
+    'A knife with which a kosher animal is killed', 
+    'Bland'
     ],
-    correctAnswer: '9 Hours'
+    correctAnswer: 'A food that is neither meat nor dairy'
 },
 // Question 2
 {
@@ -89,25 +89,25 @@ const STORE = [
 },
 // Question 9
 {
-    question: '',
+    question: 'The blood of what type of animal is kosher to consume? (Although it would not actually be done in practice)',
     answers: [
-    '', 
-    '', 
-    '', 
-    ''
+    'Insects', 
+    'Fish', 
+    'Domesticated Animals (Cows, Sheep, Goats)', 
+    'Birds'
     ],
-    correctAnswer: ''
+    correctAnswer: 'Fish'
 },
 // Question 10
 {
-    question: '',
+    question: 'Which of the following are never kosher?',
     answers: [
-    '', 
-    '', 
-    '', 
-    ''
+    'Mammals', 
+    'Birds', 
+    'Crustaceans', 
+    'Gluten-Free Products'
     ],
-    correctAnswer: ''
+    correctAnswer: 'Crustaceans'
 },
 
     
