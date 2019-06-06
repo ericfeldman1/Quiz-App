@@ -29,25 +29,29 @@ function generateQuestion() {
             name="answerOption" required>
             <span>${STORE[questionNumber].answers[0]}</span>    
         </label>
+        <br>
         <label class="answerOption">
             <input type="radio" 
             value="${STORE[questionNumber].answers[1]}" 
             name="answerOption" required>
             <span>${STORE[questionNumber].answers[1]}</span>    
         </label>
+        <br>
         <label class="answerOption">
             <input type="radio" 
             value="${STORE[questionNumber].answers[2]}" 
             name="answerOption" required>
             <span>${STORE[questionNumber].answers[2]}</span>    
         </label>
+        <br>
         <label class="answerOption">
             <input type="radio" 
             value="${STORE[questionNumber].answers[3]}" 
             name="answerOption" required>
             <span>${STORE[questionNumber].answers[3]}</span>    
         </label>
-        <button type="Submit">Submit</button>
+        <br>
+        <button class="submitQuestion" type="Submit">Submit</button>
         </fieldset>
         </form>`
     }
@@ -84,7 +88,7 @@ function renderQuestion() {
 
 // 6. USER SELECTS ANSWER
 function userSelectAnswer() {
-    $(".form").on("submit", function (event) {
+    $("form").on(".submitQuestion", function (event) {
         // Standard/generally a good thing to put in: 
         event.preventDefault();
         // Defining variables:

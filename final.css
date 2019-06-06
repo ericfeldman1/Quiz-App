@@ -14,7 +14,7 @@ nav {
 }
 
 .js-box {
-    width: 350px;
+    width: 400px;
     height: 250px;
     margin: auto;
     padding: 30px;
@@ -29,3 +29,4 @@ button {
 .quizPage {
     display: none;
 }
+
