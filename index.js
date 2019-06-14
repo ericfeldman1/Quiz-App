@@ -1,8 +1,8 @@
 // questions begin at 0 (relevant for datastore array & navbar)
-const questionNumber = 0
+let questionNumber = 0
 
 // score begins at 0 (relevant for navbar & summary page)
-const score = 0
+let score = 0
 
 // 1. START QUIZ - Hide landing page & Show question page
 function startQuiz() {
@@ -88,7 +88,7 @@ function renderQuestion() {
 
 // 6. USER SELECTS ANSWER
 function userSelectAnswer() {
-    $("form").on(".submitQuestion", function (event) {
+    $(".submitQuestion").on("click", function (event) {
         // Standard/generally a good thing to put in: 
         event.preventDefault();
         // Defining variables:
@@ -98,7 +98,7 @@ function userSelectAnswer() {
         if (answer === correctAnswer) {
             // Nec to create a "correct" CSS class!
             // selected.parent().addClass("correct");
-            userAnswerIsCorrect();
+            userAnswerCorrect();
             updateScore();
         }   else {
                 // Nec to create a "wrong" CSS class!
@@ -111,7 +111,8 @@ function userSelectAnswer() {
 
 // 7. "NEXT" BUTTON
 function renderNextQuestion() {
-    $(".quizPage").on("click",".nextQuestionButton", function(event) {
+    $(".nextQuestionButton").on("click", function (event) {
+        event.preventDefault();
         // Increments Q for datastore array and for navbar: 
         updateQuestionNumber();
         // Passes new question into html:
@@ -123,20 +124,20 @@ function renderNextQuestion() {
 
 // 8. HTML - CORRECT ANSWER
 function userAnswerCorrect() {
-    $(".quizPage").html(`<div class= "js-box correctAnswerDisplay">
-    <img src="https://images.forwardcdn.com/image/720x/center/images/cropped/w-kosher-1501703457.jpg
-    " alt="Correct Answer" class="correctAnswerImage">
+    $(".quizPage").html(`<div class= "correctAnswerDisplay">
+    <img src="https://images.forwardcdn.com/image/720x/center/images/cropped/w-kosher-1501703457.jpg" alt="Correct Answer" class="correctAnswerImage">
     <p>That is the correct answer!  Great Job!</p>  
-    <button type="button" class="nextQuestionButton">Next Question</button></div>`)
+    <button type="button" class="nextQuestionButton">Next Question</button></div>`);
+    renderNextQuestion();
 }
 
 // 9. HTML - WRONG ANSWER
 function userAnswerWrong() {
-    $(".quizPage").html(`<div class="js-box wrongAnswerDisplay">
-    <img src="http://www.theyeshivaworld.com/wp-content/uploads/2015/11/nk.png
-    " alt="Incorrect Answer" class="incorrectAnswerImage answerImage">
+    $(".quizPage").html(`<div class="wrongAnswerDisplay">
+    <img src="http://www.theyeshivaworld.com/wp-content/uploads/2015/11/nk.png" alt="Incorrect Answer" class="incorrectAnswerImage answerImage">
     <p>Sorry, that answer is incorrect.  Nice try!</p>
-    <button type="button" class="nextQuestionButton">Next Question</button></div>`)
+    <button type="button" class="nextQuestionButton">Next Question</button></div>`);
+    renderNextQuestion();
 }
 
 // 10. HTML - SUMMARY PAGE
@@ -145,11 +146,11 @@ if (score >= 8) {
     $(".quizPage").html(`<div class="js-box resultsPage">
     <h3>You answered ${score} out of 10 questions correctly.</h3>
     <p>Great job - Time to get cooking because you've got this down!</p>
-    <button type="button" class="retakeQuizButton"><Retake Quiz</button></div>`)
+    <button type="button" class="retakeQuizButton">Retake Quiz</button></div>`)
 }   else if (score >= 5) {$(".quizPage").html(`<div class="resultsPage">
 <h3>You answered ${score} out of 10 questions correctly.</h3>
 <p>Not bad, but I think you might need a bit more practice.  Study up and you'll be a pro in no time!</p>
-<button type="button" class="retakeQuizButton"><Retake Quiz</button></div>`)
+<button type="button" class="retakeQuizButton">Retake Quiz</button></div>`)
 }   else {$(".quizPage").html(`<div class="resultsPage">
 <h3>You answered ${score} out of 10 questions correctly.</h3>
 <p>Uh oh - I think we might need to kick you out of the kitchen until you study up a bit more.</p>
@@ -178,8 +179,6 @@ function createQuiz() {
 }
 
 $(createQuiz);
-
-
 
 
 

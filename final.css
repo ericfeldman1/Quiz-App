@@ -1,3 +1,6 @@
+/* Increase font size for answer page */
+/* Get questions to align left, but other items to align center */
+
 body {
     background: url("https://static01.nyt.com/images/2012/10/18/garden/18KITCHEN_SPAN/18KITCHEN-superJumbo.jpg");
     background-size: cover;
@@ -10,15 +13,15 @@ nav {
     display: flex;
     justify-content: space-around;
     margin-top: 20px;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .js-box {
-    width: 400px;
-    height: 250px;
+    box-sizing: border-box;
+    width: 70%;
     margin: auto;
-    padding: 30px;
-    background-color: rgba(9, 226, 132, .5)
+    /* padding: 30px; */
+    background-color: rgba(9, 226, 132, .7)
 }
 
 button {
@@ -30,3 +33,16 @@ button {
     display: none;
 }
 
+.questionForm {
+  border: 3px solid grey;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+.answerOption {
+    font-size: 20px;
+    text-align: left;
+}
