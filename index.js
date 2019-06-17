@@ -19,7 +19,7 @@ function startQuiz() {
 // 2. HTML - QUESTION PAGE
 function generateQuestion() {
     if (questionNumber < STORE.length) {
-        return `<div class="question-${questionNumber}">
+        return `<div class="question question-${questionNumber}">
         <h2>${STORE[questionNumber].question}</h2>
         <form class="questionForm" action="URL" method="post">
         <fieldset name ="multiple-choice-options">
@@ -124,7 +124,7 @@ function renderNextQuestion() {
 
 // 8. HTML - CORRECT ANSWER
 function userAnswerCorrect() {
-    $(".quizPage").html(`<div class= "correctAnswerDisplay">
+    $(".quizPage").html(`<div class= "answerDisplay correctAnswerDisplay">
     <img src="https://images.forwardcdn.com/image/720x/center/images/cropped/w-kosher-1501703457.jpg" alt="Correct Answer" class="correctAnswerImage">
     <p>That is the correct answer!  Great Job!</p>  
     <button type="button" class="nextQuestionButton">Next Question</button></div>`);
@@ -133,9 +133,11 @@ function userAnswerCorrect() {
 
 // 9. HTML - WRONG ANSWER
 function userAnswerWrong() {
-    $(".quizPage").html(`<div class="wrongAnswerDisplay">
+    $(".quizPage").html(`<div class="answerDisplay wrongAnswerDisplay">
     <img src="http://www.theyeshivaworld.com/wp-content/uploads/2015/11/nk.png" alt="Incorrect Answer" class="incorrectAnswerImage answerImage">
-    <p>Sorry, that answer is incorrect.  Nice try!</p>
+    <p>Sorry, that answer is <span class="incorrect">incorrect</span>.</p>
+    <p>The correct answer was:</p>
+    <p> <span class="correctAnswer">${STORE[questionNumber].correctAnswer}</span></p>
     <button type="button" class="nextQuestionButton">Next Question</button></div>`);
     renderNextQuestion();
 }
@@ -153,7 +155,7 @@ if (score >= 8) {
 <button type="button" class="retakeQuizButton">Retake Quiz</button></div>`)
 }   else {$(".quizPage").html(`<div class="resultsPage">
 <h3>You answered ${score} out of 10 questions correctly.</h3>
-<p>Uh oh - I think we might need to kick you out of the kitchen until you study up a bit more.</p>
+<p>Uh oh - I think we might need to kick you out of the kitchen until you study up a bit more!</p>
 <button type="button" class="retakeQuizButton">Retake Quiz</button></div>`)
 }
 }

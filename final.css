@@ -1,92 +1,94 @@
 body {
-    background: url("https://static01.nyt.com/images/2012/10/18/garden/18KITCHEN_SPAN/18KITCHEN-superJumbo.jpg");
-    background-size: cover;
-    background-attachment: fixed;
-    text-align: center;
-    font-family: 'Roboto', sans-serif;
+  background: url("https://static01.nyt.com/images/2012/10/18/garden/18KITCHEN_SPAN/18KITCHEN-superJumbo.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
 }
 
 nav {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-    font-size: 25px;
-    color: rgba(35, 35, 163, .9);
-    background-color: rgba(250, 250, 250, 0.95);
-    font-weight: 600;
-    border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  font-size: 25px;
+  color: rgba(35, 35, 163, .9);
+  background-color: rgba(250, 250, 250, 0.95);
+  font-weight: 600;
+  border-radius: 10px;
 }
 
 .js-box {
-    box-sizing: border-box;
-    width: 60%;
-    margin: auto;
-    /* background-color: rgba(9, 226, 132, .7); */
-    background-color: rgba(35, 35, 163, .7);
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-/* .question h2 {
   box-sizing: border-box;
-    width: 60%;
-    margin: auto;
-    background-color: rgba(9, 226, 132);
-    padding: 0px 20px 0px 20px;
+  width: 60%;
+  margin: auto;
+  /* background-color: rgba(9, 226, 132, .7); */
+  background-color: rgba(35, 35, 163, .7);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
 }
-
-.answerOption {
-    background-color: rgba(9, 226, 132);
-  padding: 0px 20px 0px 20px;
-  margin: 10px 0px 10px 0px;
-} */
 
 button {
-    padding: 10px;
-    font-size: 20px;
-    border-radius: 15px;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 15px;
+  background-color: white;
 }
 
 button:hover {
-  background-color: rgb(27, 26, 25);
-  color: white;
+background-color: rgba(35, 35, 163, .9);
+color: white;
 }
 
 .answerOption {
-  display: block;
-  padding: 10px 0 10px 0;
+display: block;
+padding: 10px 0 10px 0;
 }
 
 .answerOption:hover {
-  background-color: rgba(35, 35, 163, .9);
-  font-weight: 600;
+background-color: rgba(35, 35, 163, .9);
+font-weight: 600;
 }
 
 .quizPage {
-    display: none;
+  display: none;
 }
 
 .questionForm {
-  border: none;
-  text-align: left;
-  font-size: 20px;
-  margin-bottom: 20px;
+border: none;
+text-align: left;
+font-size: 20px;
+margin-bottom: 20px;
+}
+
+.answerDisplay {
+font-size: 20px;
 }
 
 img {
-  height: auto;
-  max-width: 100%;
+height: auto;
+max-width: 100%;
 }
 
 input[type="radio"] {
-  margin-right: 10px;
+margin-right: 10px;
 }
 
 input[type="radio"] span {
-  margin-bottom: 20px;
+margin-bottom: 20px;
 }
 .submitQuestion {
-  margin-left: 40%;
+margin-left: 40%;
 }
 
+.incorrect {  
+background-color: red;
+}
+
+.correctAnswer {
+background-color: green;
+}
+
+.resultsPage {
+font-size:20px;
+}
