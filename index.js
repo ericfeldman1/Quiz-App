@@ -8,7 +8,7 @@ let score = 0
 function startQuiz() {
     $(".landingPage").on("click", ".startButton", function(event) {
     // Removes landing page:
-    $(".landingPage").remove();
+    $(".landingPage").hide();
     // Displays questions page:
     $(".quizPage").css("display", "block")
     // Increments question count in navbar to 1:
@@ -23,34 +23,35 @@ function generateQuestion() {
         <h2>${STORE[questionNumber].question}</h2>
         <form class="questionForm" action="URL" method="post">
         <fieldset name ="multiple-choice-options">
+
         <label class="answerOption">
             <input type="radio" 
             value="${STORE[questionNumber].answers[0]}" 
-            name="answerOption" required>
-            <span>${STORE[questionNumber].answers[0]}</span>    
+            name="answerOption" checked required>
+            <span>${STORE[questionNumber].answers[0]}</span>
         </label>
-        <br>
+      
         <label class="answerOption">
             <input type="radio" 
             value="${STORE[questionNumber].answers[1]}" 
             name="answerOption" required>
-            <span>${STORE[questionNumber].answers[1]}</span>    
+            <span>${STORE[questionNumber].answers[1]}</span> 
         </label>
-        <br>
+        
         <label class="answerOption">
             <input type="radio" 
             value="${STORE[questionNumber].answers[2]}" 
             name="answerOption" required>
-            <span>${STORE[questionNumber].answers[2]}</span>    
+            <span>${STORE[questionNumber].answers[2]}</span> 
         </label>
-        <br>
+        
         <label class="answerOption">
             <input type="radio" 
             value="${STORE[questionNumber].answers[3]}" 
             name="answerOption" required>
-            <span>${STORE[questionNumber].answers[3]}</span>    
+            <span>${STORE[questionNumber].answers[3]}</span> 
         </label>
-        <br>
+        
         <button class="submitQuestion" type="Submit">Submit</button>
         </fieldset>
         </form>`
@@ -164,7 +165,14 @@ if (score >= 8) {
 function restartQuiz() {
     $(".resultsPage").on("click", ".retakeQuizButton", function(event) {
         // Refreshes the page, i.e. re-starts the app:
-        location.reload();
+        $(".quizPage").hide();
+        $(".landingPage").show();
+        questionNumber = 0;
+        score = 0;
+        $(".score").text(score);
+        $(".questionNumber").text(questionNumber);
+        createQuiz();
+        // location.reload();
     });
 }
 

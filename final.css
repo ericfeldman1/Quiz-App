@@ -33,11 +33,13 @@ button {
   font-size: 20px;
   border-radius: 15px;
   background-color: white;
+  margin-top: 20px;
 }
 
 button:hover {
 background-color: rgba(35, 35, 163, .9);
 color: white;
+cursor: pointer;
 }
 
 .answerOption {
@@ -48,6 +50,7 @@ padding: 10px 0 10px 0;
 .answerOption:hover {
 background-color: rgba(35, 35, 163, .9);
 font-weight: 600;
+cursor: pointer;
 }
 
 .quizPage {
@@ -91,4 +94,8 @@ background-color: green;
 
 .resultsPage {
 font-size:20px;
+}
+
+fieldset {
+border: none;
 }
